@@ -1,9 +1,9 @@
 def img
 pipeline {
     environment {
-        registry = "freemindev/pythonlab" //To, asdsdfd you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
+        registry = "freemindev/pythonlab" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'DOCKERHUB'
-        githubCredential = 'GITHUB'
+        githubCredential = 'GITHUB_TOKEN'
         dockerImage = ''
     }
     agent any
@@ -19,7 +19,6 @@ pipeline {
         
         stage ('Test'){
                 steps {
-                sh "pip install -r requirements.txt"
                 sh "pytest testRoutes.py"
                 }
         }
